@@ -25,7 +25,6 @@ public class Loginservlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);//This is auto created...
 		System.out.println("Lazaros was here! i'm joking... Servlet is working!");
 		
 		String user;// Make a variable to keep the input from user text-input.

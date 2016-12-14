@@ -21,6 +21,16 @@ public class Customer {
 	
 
 	public Customer(String name,double afm,String address,String PartinentName,int phone,ArrayList<String> CoopCompanies) {
+		Workshop_Name=name;
+		this.afm=afm;
+		this.address=address;
+		this.PartinentName = PartinentName;
+		this.phone = phone;
+		this.CoopCompanies = new ArrayList<String>();
+		
+		for(String cop : CoopCompanies){
+			CoopCompanies.add(cop);
+		}
 		
 	}
 

@@ -7,24 +7,25 @@
 <title>Welcome!</title>
 </head>
 <body>
-	<%
-		
+
+	<form action="login.jsp" method="post">
+		<p><label>Enter your credentials above:</label></p>
+		NAME:
+		<p><input type="text" name="user" /></p>
+		PASSWORD:
+		<p><input type="password" name="pass" /></p>
+		<p><input type="submit" value="OK!"/></p>
+	</form>
+<%
 		String user;// Make a variable to keep the input from user text-input.
 		user = request.getParameter("user");
 		String pass;// Make a variable to keep the input from password text-input.
 		pass= request.getParameter("pass");
 		
 		if (user!=null && pass!=null){
-			out.println("Hello "+user +" "+ pass+"!");
+			System.out.println("Hello "+user +" "+ pass+"!");
 		}
-	%>
-	<form action="Loginservlet" method="post">
-		<p><label>Enter your credentials above:</label></p>
-		<p><input type="text" name="user" /></p>
-		<p><input type="password" name="pass" /></p>
-		<p><input type="submit" value="OK!"/></p>
-	</form>
 
-	
+%>
 </body>
 </html>
