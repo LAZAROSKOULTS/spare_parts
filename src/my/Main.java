@@ -4,9 +4,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Hello World from STS!");
-		
-		//User user=new User("baggellas",new Role("pilotos"));
+		FakeDB myDB=new FakeDB();
+		System.out.println(myDB.getUsers().toString());
 	}
 
 }

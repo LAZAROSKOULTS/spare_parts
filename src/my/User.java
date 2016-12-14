@@ -36,4 +36,9 @@ public class User implements Serializable {
 	public Role getRole(){
 		return role;
 	}
+	@Override
+	public String toString(){
+		return "Username: "+username+" Email: "+email+" Role: "+role;
+		
+	}
 }

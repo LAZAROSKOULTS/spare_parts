@@ -13,15 +13,15 @@ import java.util.ArrayList;
  */
 public class Customer {
 	private String Workshop_Name;
-	private double AFM;
+	private double afm;
 	private String address; //Τι θέλει; e-mail ή κανονική διεύθυνση;
-	private String PartinentName;
+	private String PartinentName; ///WTF?
 	private int phone;// Μπορει και String αν ειναι να βαλουμε κανενα (+30)...
 	private ArrayList<String> CoopCompanies;//Αυτο μαλλον θα αναπαρασταθει σαν εξτρα πινακας με ξενο κλειδι το id του Πελατη..
 	
 
-	public Customer() {
-		// TODO Auto-generated constructor stub
+	public Customer(String name,double afm,String address,String PartinentName,int phone,ArrayList<String> CoopCompanies) {
+		
 	}
 
 	

@@ -18,10 +18,10 @@
 			out.println("Hello "+user +" "+ pass+"!");
 		}
 	%>
-	<form action="login.jsp" method="post">
+	<form action="Loginservlet" method="post">
 		<p><label>Enter your credentials above:</label></p>
 		<p><input type="text" name="user" /></p>
-		<p><input type="text" name="pass" /></p>
+		<p><input type="password" name="pass" /></p>
 		<p><input type="submit" value="OK!"/></p>
 	</form>
 
