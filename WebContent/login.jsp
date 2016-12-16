@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="login.jsp" method="post">
+	<form action="LoginSuccess.jsp" method="post">
 		<p><label>Enter your credentials above:</label></p>
 		NAME:
 		<p><input type="text" name="user" /></p>

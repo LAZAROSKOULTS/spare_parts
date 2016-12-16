@@ -5,6 +5,7 @@ public class Database {
 	static ArrayList<User> Users;
 	static ArrayList<Service> Services;
 	static ArrayList<SparePart> SpareParts;
+	static ArrayList<Transaction> Transactions;
 	
 	public Database() {
 	}
@@ -19,5 +20,8 @@ public class Database {
 	
 	static boolean NewUser(User nu){
 		return true;
+	}
+	static public ArrayList<Transaction> getTransactions(){
+	return Transactions;
 	}
 }
