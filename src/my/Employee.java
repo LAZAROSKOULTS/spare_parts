@@ -9,7 +9,7 @@ public class Employee extends User{
 	public Employee(String name,String email) {
 		username=name;
 		this.email=email;
-		role=new Role("Employee");
+		role="Employee";
 	}
 	
 	//Constractor for TESTS!

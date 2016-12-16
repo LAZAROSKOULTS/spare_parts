@@ -8,7 +8,7 @@ public class Partinent extends User{
 	public Partinent(String name,String email) {
 		username=name;
 		this.email=email;
-		role=new Role("Partinent");
+		role="Partinent";
 	}
 	
 	//Constractor for tests!

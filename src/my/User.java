@@ -7,7 +7,7 @@ public class User implements Serializable {
 	protected int id=99;
 	protected String username;
 	protected String email;
-	protected Role role;
+	protected String role;
 	
 	
 	public User(){
@@ -33,7 +33,7 @@ public class User implements Serializable {
 	public void setEmail(String email){
 		this.email=email;
 	}
-	public Role getRole(){
+	public String getRole(){
 		return role;
 	}
 	@Override
