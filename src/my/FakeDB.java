@@ -8,6 +8,7 @@ public class FakeDB extends Database{
 		makeUsers();
 		makeServices();
 		makeSpareParts();
+		makeTransactions();
 	}
 
 	private ArrayList<User> makeUsers(){
@@ -38,5 +39,14 @@ public class FakeDB extends Database{
 			SpareParts.add(pa);
 		}
 		return SpareParts;
+	}
+	private ArrayList<Transaction> makeTransactions(){
+		Transactions = new ArrayList<Transaction>();
+		for (int i=0;i<10;i++){
+			Transaction a=new Transaction();
+			Transactions.add(a);
+		}
+		return Transactions;
+				
 	}
 }
