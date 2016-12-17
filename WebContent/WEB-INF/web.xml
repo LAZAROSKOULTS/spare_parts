@@ -11,4 +11,16 @@
     </cookie-config>
     <tracking-mode>COOKIE</tracking-mode>
   </session-config>
+  <context-param>
+    <param-name>dbUser</param-name>
+    <param-value>214106</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbPassword</param-name>
+    <param-value>changeit</param-value>
+  </context-param>
+  <context-param>
+    <param-name>dbURL</param-name>
+    <param-value>jdbc:mysql://83.212.105.20:3306/214106</param-value>
+  </context-param>
 </web-app>
