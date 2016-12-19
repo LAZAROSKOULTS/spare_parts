@@ -4,15 +4,38 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 //Handles the queries!!!
 public class DBHandler {
-	//CAREFUL EVERYTHING IS NULL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!FIX IT!
 	private Connection connection;
-	private ResultSet rs;
-	private Statement stmt;
+	//private ResultSet rs;
+	//private Statement stmt;
 	
 	
+	//get connection outside it...
+	public DBHandler(Connection conn){
+		this.connection = conn;
+	}
+	
+	//Start from here
+	//Execute a query that doesn't return results!
+	public void execute(String sql){
+		
+	}
+	
+	//Get results from db.
+	public ArrayList<HashMap<String, Object>> getQuery(String sql){
+		
+	}
+	
+	private void fetch(ResultSet rs, ArrayList<HashMap<String, Object>> results){
+		
+	}
+	
+	//OLD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//Execute an sql query, get result set (for simple statements)
 	public ResultSet execQuery(String query){
 		//If there are leftovers, clean them.
