@@ -17,7 +17,7 @@
 		Dummy db = new Dummy("String");//SELECT id , cost from Transactions
 		for(HashMap<String,Object> row : db.results){  
 			Object id = row.get("coloumn1");//id
-			Object cost = row.get("coloumn2");
+			Object cost = row.get("coloumn2");//cost
 			String tran_id = (String) id;
 			String tran_cost =(String) cost;
 	%>
