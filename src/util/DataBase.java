@@ -23,7 +23,7 @@ public final class DataBase {
     private DataBase(String dbURL, String user, String pwd) {//class controls its instantiation.
     	try {
             //Check if driver exists.
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			Class.forName("org.apache.commons.dbcp.BasicDataSource");
         } catch (ClassNotFoundException ex) {
             System.out.println("Problem with SQL connection. Drivers do not exist!");
@@ -31,7 +31,7 @@ public final class DataBase {
         }
     	//Create DataSource(connection with DB!)
     	BasicDataSource ds = new BasicDataSource();
-    	ds.setDriverClassName("com.mysql.jdbc.Driver");
+    	ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
     	ds.setUrl(dbURL);
     	ds.setUsername(user);
     	ds.setPassword(pwd);

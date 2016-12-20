@@ -19,10 +19,7 @@ import util.DataBase;
 @WebServlet(description = "DELETE IT BEFORE SENDING...", urlPatterns = { "/DBTestServlet" })
 public class DBTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String title;
-	String docType;
-	String result;
-	PrintWriter out;
+	//A REALLY REALLY DUMB SERVLET FOR TESTINGS
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -32,23 +29,22 @@ public class DBTestServlet extends HttpServlet {
     }
     
     public void init() throws ServletException{
-    	title = "TEST DB";
-    	docType = "<!doctype html public \"-//w3c//dtd html 4.0 " +
-				"transitional//en\">\n";
-    	result = "";
+    	super.init();
+    	
     	
     }
 
-    private void printResult(PrintWriter output){
-		output.println(docType + "<html>\n" +
-		        "<head><title>" + title + "</title></head>\n" +
-		        "<body bgcolor=\"#f0f0f0\">\n"+ result + "" +
-		        "</body></html>");	
+    private void printResult(PrintWriter output){	
     }
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title;
+		String docType;
+		String result;
+		PrintWriter out;
+		title = "TEST DB";
+    	docType = "<!doctype html public \"-//w3c//dtd html 4.0 " +
+				"transitional//en\">\n";
+    	result = "";
 		response.setContentType("text/html");
 		out = response.getWriter();
 		result = "<p><h1><b>WRITE SOME SQL:<b></h1></br>"+
@@ -57,21 +53,62 @@ public class DBTestServlet extends HttpServlet {
 					"Enter SELECT query here..."+
 					"</textarea>"+"<input type='submit' name='submit' value='Submit' />"+
 				"</form>";
-		printResult(out);
+		String user = "";
+		DataBase DB = (DataBase) getServletContext().getAttribute("DataBase");
+		ArrayList<HashMap<String,Object>> ret = DB.fetch("SELECT max(id) as max FROM user");
+		Integer max = (Integer) ret.get(0).get("max");
+		System.out.println("max is :"+max);
+		//max = max + 1;
+		//int success = DB.execute("INSERT INTO user VALUES ('myUser','myUser','me@gmail.com',"+max+",'test')");
+		ret = DB.fetch("SELECT * FROM user where usertype='test'");
+		user = (String) ret.get(0).toString();
+		result = result + "ADDITION:" + user;
+		out.println(docType + "<html>\n" +
+		        "<head><title>" + title + "</title></head>\n" +
+		        "<body bgcolor=\"#f0f0f0\">\n"+ result + "" +
+		        "</body></html>");
 	}
 	
 	protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title;
+		String docType;
+		String result;
+		PrintWriter out;
+		title = "TEST DB";
+    	docType = "<!doctype html public \"-//w3c//dtd html 4.0 " +
+				"transitional//en\">\n";
+    	result = "";
 		response.setContentType("text/html");
 		out = response.getWriter();
 		result = "<p>";
 		DataBase DB = (DataBase) getServletContext().getAttribute("DataBase");
 		ArrayList<HashMap<String,Object>> ret = DB.fetch("SELECT * FROM user");
-		System.out.println(ret.toString());
-		result = result + ret.toString() + "</br>";
-		String sql = request.getAttribute("sql").toString();
+		if(ret==null){
+			System.out.println("Nothing returned from db:first call");
+		} else {
+			System.out.println(ret);
+			for(HashMap<String,Object> m : ret){
+				result = result + m.toString() + "</br>";
+				System.out.println(m.toString());
+			}
+			
+		}	
+		String sql = "SELECT * FROM company ";
 		ret = DB.fetch(sql);
+		if(ret==null){
+			System.out.println("Nothing returned from db:second call");
+		}else{
+			System.out.println(ret);
+			for(HashMap<String,Object> m : ret){
+				result = result + m.toString() + "</br>";
+				System.out.println(m.toString());
+			}
+		}
 		result = result + "</p>";
-		printResult(out);
+		out.println(docType + "<html>\n" +
+		        "<head><title>" + title + "</title></head>\n" +
+		        "<body bgcolor=\"#f0f0f0\">\n"+ result + "" +
+		        "</body></html>");
 	}
 
 }
