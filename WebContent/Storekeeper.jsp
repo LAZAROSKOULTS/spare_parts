@@ -9,21 +9,33 @@
 <body>
 <h1>Hello!</h1>
 <p>There is all the transactions!</p>
-
-	<jsp:useBean id="db" class="my.FakeDB"/> 
-	<jsp:useBean id="tran" class="my.Transaction"/>
-	<% 
-		
-		for(int i=0; i<db.getTransactions().size(); i++){  
-			tran = db.getTransactions().get(i);
-	%>
-		<p> <%= tran %> 
-		
-		<form action="Storekeeper/TransactionDetails.jsp" method="post">
-		<input type="submit" value="Details!">
-		</form>
-		</p>
+<%@ page import="java.util.HashMap,java.util.ArrayList,my.Dummy" %>
 	
+	
+	
+	<% 
+		Dummy db = new Dummy("String");//SELECT id , cost from Transactions
+		for(HashMap<String,Object> row : db.results){  
+			Object id = row.get("coloumn1");//id
+			Object cost = row.get("coloumn2");
+			String tran_id = (String) id;
+			String tran_cost =(String) cost;
+	%>
+	<table>
+		
+		<tr> 
+		<td> <%= tran_id %> 
+		<td> <%=tran_cost %>
+		
+		
+		<td>
+		<form action="Storekeeper/TransactionDetails.jsp" method="post">
+		<input type="submit" value="Details!"/>
+		<input type="hidden" name="tran" value="<%=id%>"/>
+		</form>
+		</td>
+		</tr>
+	</table>
 	<%
 		}
 	%>
