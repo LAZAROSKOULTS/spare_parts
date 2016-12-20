@@ -4,13 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>LSD WERE HERE!!!</title>
+<title>Car Spare Parts Ordering System</title>
 </head>
 <body>
-<p> Welcome! </p>
-
-<p>
-<form action="login.jsp"><input type="submit" value="LOG IN!!!" /></form> 
-<form action="signin.jsp"><input type="submit" value="SIGN IN!!"/></form>
+	<h1>Welcome!</h1>
+	<form action="login.jsp"><input type="submit" value="LOG IN!!!" /></form>
+	<form action="signin.jsp"><input type="submit" value="SIGN IN!!"/></form> 
 </body>
 </html>

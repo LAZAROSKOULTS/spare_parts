@@ -33,9 +33,6 @@ public class DBTestServlet extends HttpServlet {
     	
     	
     }
-
-    private void printResult(PrintWriter output){	
-    }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String title;
 		String docType;
