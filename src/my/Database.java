@@ -10,7 +10,7 @@ public class Database {
 	public Database() {
 	}
 
-	static ArrayList<User> getUsers(){
+	static public ArrayList<User> getUsers(){
 		return Users;
 	}
 	
@@ -24,4 +24,9 @@ public class Database {
 	static public ArrayList<Transaction> getTransactions(){
 	return Transactions;
 	}
+	
+	static public void getTranIdCostEdate(ArrayList<String> tran){
+	
+	}
+	
 }

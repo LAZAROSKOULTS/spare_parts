@@ -5,7 +5,7 @@ public class Storekeeper extends User{
 
 	ArrayList<SparePart> Storage;
 	
-	//Constractor!
+	//Constructor!
 	public Storekeeper(String name,String email) {//To be continued...
 		username=name;
 		this.email=email;
@@ -14,6 +14,6 @@ public class Storekeeper extends User{
 	}
 
 
-	//Constractor for TESTS!
+	//Constructor for TESTS!
 	public Storekeeper(){}
 }

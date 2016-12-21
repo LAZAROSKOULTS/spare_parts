@@ -4,13 +4,41 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Login Success Page</title>
 </head>
 <body>
 	<%
-	String user;
-	user=request.getParameter("user");
+	String user =null;
+	String usertype=null;
+	if (session.getAttribute("user")==null){
+		response.sendRedirect("login.html");
+	}else
+		user = (String) session.getAttribute("user");
+		usertype=(String) session.getAttribute("type");
+		String userName =null;
+		String sessionID =null;
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+            for (Cookie cookie : cookies) {
+
+                if (cookie.getName().equals("user"))
+                        userName = cookie.getValue();
+                if (cookie.getName().equals("JSESSIONID"))
+                        sessionID = cookie.getValue();
+                
+            }    
+        }
+	
 	%>
-	Hello <%=user %>
+	
+	        <h3>
+                Hi
+                <%= userName %>, Login successful. Your Session ID=<%= sessionID %></h3>
+        <br> User=<%= user  %><br>Role=<%=usertype %>
+        <br>
+        <a href="CheckoutPage.jsp">Checkout Page</a>
+        <form action="LogoutServlet" method="post">
+                <input type="submit" value="Logout">
+        </form>
 </body>
 </html>

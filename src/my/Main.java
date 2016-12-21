@@ -4,8 +4,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		FakeDB myDB=new FakeDB();
-		System.out.println(myDB.getUsers().toString());
+		Dummy dumy=new  Dummy("String");//
+		Object o = dumy.results.get(0).get("coloumn1");
+		String a= (String) o;
+		System.out.println(dumy.results);
+		System.out.println(a);
+		
 	}
 
 }

@@ -4,14 +4,14 @@ import java.io.Serializable;
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;//Fix for Serializable warning...
-	protected int id=99;
+	protected int id;
 	protected String username;
 	protected String email;
 	protected String role;
 	
 	
 	public User(){
-		this.id=this.id+1;
+		
 	}
 	
 	
