@@ -17,8 +17,13 @@
 <title>Manage System Users</title>
 </head>
 <body>
+	<form action="AdminDispatch" method="POST">
+		<input type="submit" value="Return"/>
+		<input type="hidden" name="Action" value="Return" />
+	</form>
 	<h1>ADD NEW USER:</h1>
-	<form action="AddUser" method="POST">
+	<form action="AdminDispatch" method="POST">
+		<input type="hidden" name="Action" value="NewUser" />
 		USERNAME : <input type="text" name="username"><br/>
 		PASSWORD : <input type="text" name="password"><br/>
 		E-MAIL   : <input type="text" name="email"><br/>
@@ -30,21 +35,27 @@
 	</form>
 	<br/>
 	<h1>HERE ARE THE USERS!!!</h1>
-	<h3>USERNAME	,	PASSWORD	,	EMAIL	,	ROLE</h3>
-	<ul type="square">
+	<table border="1" bordercolor="green">
+		<tr> 
+			<td>User_name</td>
+			<td>id</td>
+			<td>role</td>
+		</tr>
 		<% for(HashMap<String,Object> user : users) {%>
-			<li> 
-				<%=(String) user.get("username") %> , <%=(String) user.get("password") %> , <%=(String) user.get("email") %> , <%=(String) user.get("usertype") %>
-				<form action="EditUser" method="POST">
-				<select name="action">
-					<option value="edit">EDIT</option>
-					<option value="delete">DELETE</option>
-				</select>
-				<input type="submit" name="submit" value="DO IT!" />
-				<input type="hidden" name="id" value="<%=user.get("id") %>" />
+			<tr>
+				<td><%=(String) user.get("username") %></td> <td><%=(String) user.get("id") %></td> <td><%=(String) user.get("usertype") %></td> 
+				<td><form action="AdminDispatch" method="POST">
+					<input type="submit" value="Delete"/>
+					<input type="hidden" name="id" value="<%=user.get("id") %>" />
+					<input type="hidden" name="Action" value="Delete" />
+				</form></td>
+				<td><form action="AdminDispatch" method="POST">
+					<input type="submit" value="Update"/>
+					<input type="hidden" name="id" value="<%=user.get("id") %>" />
+					<input type="hidden" name="Action" value="Update" />
 				</form>
-			</li>
+			</tr>
 		<%}%>
-	</ul>
+	</table>
 </body>
 </html>

@@ -54,8 +54,9 @@ public class GodMode extends HttpServlet {
 		String title = "Admin for SpareParts System";
 		String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " +
 				"transitional//en\">\n";
-		//Check if admin requests a tool through session 
+		//Check if admin requests a tool through session. 
 		//If session has been already set, values are not null.
+		//CHECK FOR NULL POINTER (TRY_CATCH IF ERROR...)
 		String result = (String) request.getSession().getAttribute("Access");
 		String username = (String) request.getSession().getAttribute("username");
 		String password = (String) request.getSession().getAttribute("password");
@@ -66,7 +67,7 @@ public class GodMode extends HttpServlet {
 				if(catalog != null){
 					//if user addition or removal is selected...UserCatalog
 					//if access addition or removal of groups is selected...ServiceCatalog
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/"+catalog+".jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin/"+catalog+".jsp");
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -89,9 +90,13 @@ public class GodMode extends HttpServlet {
 			result = "<p><h1><b>WELLCOME ADMIN, HERE ARE YOUR TOOLS:<b></h1><br>"+
 					"<form action='GodMode' method='POST'>"+
 						"<b>USER CATALOG</b><br>"+
-						"<input type='submit' name='Catalog' value='UserCatalog'/><br>"+
+						"<input type='submit' name='submit' value='UserCatalog'/><br>"+
+						"<input type='hidden' name='Catalog' value='UserCatalog' />"+
+					"</form>"+
+					"<form action='GodMode' method='POST'>"+
 						"<b>SERVICE AND USER GROUP CATALOG</b>"+
-						"<input type='submit' name='Catalog' value='ServiceCatalog'/><br>"+
+						"<input type='submit' name='submit' value='ServiceCatalog'/><br>"+
+						"<input type='hidden' name='Catalog' value='ServiceCatalog' />"+
 					"</form>";
 		} else {//If visitor is not admin...
 			//Get a warning @System log!
