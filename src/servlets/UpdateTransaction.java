@@ -44,8 +44,8 @@ public class UpdateTransaction extends HttpServlet {
 			      }else{
 			    	  
 			    	  float n_amount= (1-disc)*amount ;
-			      //ΕΔΩ ΘΕΛΩ ΜΙΑ ΚΛΗΣΗ(UPDATE) ΣΤΗΝ ΒΑΣΗ ΓΙΑ ΤΟΝ ΠΙΝΑΚΑ TRANSACTION ME TRAN_ID=ID
-			      //όπου θα βαζει στο ΑMOUNT TO n_amount και θα κανει το status=checked!
+			    	//kane (UPDATE) ston pinaka TRANSACTION me TRAN_ID=ID
+				      //kai sto ΑMOUNT bale to n_amount kai kane to status=checked!
 			    	  System.out.println("New amount is "+n_amount+" and discount is "+ disc);
 			      response.sendRedirect("Supervisor/TransactionDetails.jsp?tran="+id );
 			      }
