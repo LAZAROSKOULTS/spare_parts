@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 		HashMap<String,Object> row = db.results.get(0);  
 			Object DBusername = row.get("coloumn1");//username
 			String username = (String) DBusername;
-			username = "laz";
+			username = user;
 			
 			RequestDispatcher rd =getServletContext().getRequestDispatcher("/login.html");//That's for the false case!
 			PrintWriter out=response.getWriter();
@@ -48,8 +48,8 @@ public class LoginServlet extends HttpServlet {
 					Object DBtype = row2.get("coloumn2");//usertype
 					String password = (String) DBpass;
 					String usertype = (String) DBtype;
-					password = "laz";
-					usertype = "Supervisor";
+					password = pwd;
+					usertype = "Warehouse_keeper";
 				
 					if(password.equals(pwd)){
 
@@ -65,7 +65,9 @@ public class LoginServlet extends HttpServlet {
 						}else if (usertype.equals("Employee")){
 							response.sendRedirect("Employee.jsp");
 						}else if (usertype.equals("Supervisor")){
-						response.sendRedirect("Supervisor/Supervisor.jsp");
+							response.sendRedirect("Supervisor/Supervisor.jsp");
+						}else if (usertype.equals("Customer")){
+							response.sendRedirect("Customer/Customer.jsp");
 						}
 						
 					}else{

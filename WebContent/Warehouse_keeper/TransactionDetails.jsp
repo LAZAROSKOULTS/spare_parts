@@ -10,8 +10,9 @@
 
  <%@ page import="java.util.HashMap,java.util.ArrayList,my.Dummy" %>
 		
-		<%
-			String t_id = request.getParameter("tran");
+		<%//κληση στην βαση για να παρουμε πληροφοριες για την συναλλαγη.
+		String t_id = request.getParameter("tran");
+		boolean ready = true ;
 		Dummy db = new Dummy("String");//SELECT * from Transaction where trans_id=t_id
 		HashMap<String,Object> row = db.results.get(0);  
 			
@@ -42,32 +43,64 @@
 			<table border=2>
 			<tbody>
 			
-			<tr><td> Part name <td>Quantity<td> Remaining <td> Storage</tr>
+			<tr><td> Part name<td>Part id <td>Quantity<td> Remaining <td> Storage<td>Action</tr>
 
-			<%
+			<%//Κληση στην βαση για το ποια ανταλακτικα θελει ο πελατης, ποσα ηθελε εξ' αρχης, και ποσα θελει ακομα (ολη η λιστα παραγκελιας).
 			Dummy db2 = new Dummy("String");//SELECT * from Join Transaction T on trans_parts P where T.id = P.t_id
-			for(HashMap<String,Object> row2 : db.results){  
+			for(HashMap<String,Object> row2 : db.results){ 
+				Object p_name = row2.get("coloumn0");//Part_name
 				Object p_id = row2.get("coloumn1");//Part_id
 				Object p_quantity = row2.get("coloumn2");//P_quantity
 				Object remaining = row2.get("coloumn3");//P_remaining
-				Object Storage = row2.get("coloumn4");//P_storage
+
+				String tran_p_name = (String) p_name;
 				String tran_p_id = (String) p_id;
 				String tran_p_quantity =(String) p_quantity;
 				String tran_remaining = (String) remaining;
-				String tran_storage = (String) Storage;
-			%>
+				tran_remaining="0";
+					int i = Integer.parseInt(tran_remaining.trim());
+					if(i >0){// Check if all parts have been collected!
+						ready = false;
+					}
+			
+			// κληση στον πινακα parts για να βρουμε την τρεχουσα διαθεσιμοτητα καθε ανταλλακτικου.
+				Dummy db3 = new Dummy("String");//SELECT  from sparePart where part_id=part_id
+				HashMap<String,Object> row3 = db3.results.get(0);  
+			
+				Object availability  = row.get("coloumn2");//availability 
+				String part_availability  =(String) availability;
+
+		%>	
+			
+			
 			<tr>
 			
+			<td><%= tran_p_name %>
 			<td><%= tran_p_id %>
 			<td><%= tran_p_quantity %>
-			<td><%= tran_remaining%>
-			<td><%= tran_storage %>
+			<td><%= tran_remaining %>
+			<td><%= part_availability %>
+			<td>	<form action="CollectPart.jsp" method="post">
+					<input type="submit" value="Collect More!">
+					<input type="hidden" name="name" value="<%=tran_p_name%>">
+					<input type="hidden" name="id" value="<%=tran_p_id%>">
+					<input type="hidden" name="remain" value="<%=tran_remaining%>">
+					<input type="hidden" name="available" value="<%=part_availability%>">
+					<input type="hidden" name ="t_id" value="<%=t_id%>">
+					</form>
 			</tr>
-		
 		<%
 		}
 		%>
 			</tbody>
 			</table>
+			<%if (ready){//If all parts have been collected then show the "finish" button.
+			%>
+			<form action="" method="post">
+				<input type="submit" value="Finish Order!">
+				<input type="hidden" name="tran_id" value="<%=t_id%>">
+			
+			</form>
+			<%} %>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Transaction</title>
 </head>
 <body>
 
@@ -40,15 +40,19 @@
 		<%
 		if(tran_status.equals("Collected")){
 		%>
+		<br>
 		<table>
 			<tr>
-				<td>Make an discount:</td>
+				<td>Make an percentage discount:</td>
 				<td>
-					<form>
-						<input type="text" name="disc">
+					<form action="../UpdateTransaction" method="post">
+						<input type="text"  name="disc">%.
 						<input type="submit" value="SAVE">
+						<input type="hidden" value="<%=t_id%>"name="tran_id">
+						<input type="hidden" value="<%=tran_amount%>" name="amount">
 					</form>
 				</td>
+				
 			</tr>
 		</table>
 		
