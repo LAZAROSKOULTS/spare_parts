@@ -18,11 +18,11 @@
 	<%
 	ArrayList<HashMap<String,Object>> results = db.fetch("SELECT * from Transactions where status='collected'");
 	for(HashMap<String,Object> row : results){  
-		String tran_id = (String) row.get("id");
+		int tran_id = (int) row.get("id");
 		String tran_cost =(String) row.get("cost");
-		String tran_customer_id =(String) row.get("customer_id");
+		int tran_customer_id =(int) row.get("customer_id");
 		String tran_entry_date =(String) row.get("entry_date");
-		String tran_empolyee_id =(String) row.get("employee_id");
+		int tran_empolyee_id =(int) row.get("employee_id");
 	%>
 	<tr>
 	
