@@ -23,4 +23,11 @@
     <param-name>dbURL</param-name>
     <param-value>jdbc:mysql://83.212.105.20:3306/214106</param-value>
   </context-param>
+  <jsp-config>
+	<jsp-property-group>
+		<url-pattern>/Warehouse_keeper/*</url-pattern>
+		<include-prelude>/WEB-INF/header.jsp</include-prelude>
+		<trim-directive-whitespaces>true</trim-directive-whitespaces>
+	</jsp-property-group>
+</jsp-config>
 </web-app>
