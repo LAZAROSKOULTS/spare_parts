@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <%@ page import="java.util.HashMap,java.util.ArrayList,my.Dummy" %>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -8,12 +10,25 @@
 </head>
 <body>
 <%
-String s_name=request.getParameter("name");
-String s_id=request.getParameter("id");
-String s_remain=request.getParameter("remain");
-String s_available=request.getParameter("available");
-%>
-<h2> These are some info for the part:<%=s_name %>.</h2>
+String t_id=request.getParameter("t_id");//Transaction id
+String p_id=request.getParameter("p_id");//Part id
+
+
+
+				Dummy db = new Dummy("String");//SELECT * from Trans_part where trans_id=t_id && part_id=p_id
+				HashMap<String,Object> row = db.results.get(0);  
+				Object p_name = row.get("coloumn0");//Part_name
+				Object remaining = row.get("coloumn3");//P_remaining
+
+				String tran_p_name = (String) p_name;
+				String s_remain = (String) remaining;
+				
+				Dummy db3 = new Dummy("String");//SELECT  from sparePart where part_id=part_id
+				HashMap<String,Object> row3 = db3.results.get(0);  
+				Object availability  = row.get("coloumn2");//availability 
+				String s_available  =(String) availability;
+				%>
+<h2> These are some info for the part:<%=tran_p_name %>.</h2>
 <table border=1>
 	<tr>
 		<td>Part name
@@ -22,8 +37,8 @@ String s_available=request.getParameter("available");
 		<td>Available
 	</tr>
 	<tr>
-		<td><%=s_name %>
-		<td><%=s_id %>
+		<td><%=tran_p_name %>
+		<td><%=p_id %>
 		<td><%=s_remain %>
 		<td><%=s_available %>
 	</tr>
@@ -37,8 +52,10 @@ String s_available=request.getParameter("available");
 <form action="../CollectPart" method="post">
 		<input type="text" name="lots">
 		<input type="submit" value="SAVE!">
-		<input type="hidden" value="<%=s_id%>" name="s_id">
-		<input type="hidden" value="<%=s_remain%>" name="s_remain">
+		<input type="hidden" value="<%=p_id%>" name="p_id">
+		<input type="hidden" value="<%=t_id%>" name="t_id">
+		<input type="hidden" value="<%=s_remain%>" name="s_remain"> <%// It's s_remain because it's a String but i want an int %>
+		
 </form>
 
 </body>

@@ -10,7 +10,7 @@
 
  <%@ page import="java.util.HashMap,java.util.ArrayList,my.Dummy" %>
 		
-		<%//κληση στην βαση για να παρουμε πληροφοριες για την συναλλαγη.
+		<%
 		String t_id = request.getParameter("tran");
 		boolean ready = true ;
 		Dummy db = new Dummy("String");//SELECT * from Transaction where trans_id=t_id
@@ -45,7 +45,7 @@
 			
 			<tr><td> Part name<td>Part id <td>Quantity<td> Remaining <td> Storage<td>Action</tr>
 
-			<%//Κληση στην βαση για το ποια ανταλακτικα θελει ο πελατης, ποσα ηθελε εξ' αρχης, και ποσα θελει ακομα (ολη η λιστα παραγκελιας).
+			<%
 			Dummy db2 = new Dummy("String");//SELECT * from Join Transaction T on trans_parts P where T.id = P.t_id
 			for(HashMap<String,Object> row2 : db.results){ 
 				Object p_name = row2.get("coloumn0");//Part_name
@@ -63,7 +63,7 @@
 						ready = false;
 					}
 			
-			// κληση στον πινακα parts για να βρουμε την τρεχουσα διαθεσιμοτητα καθε ανταλλακτικου.
+			// 
 				Dummy db3 = new Dummy("String");//SELECT  from sparePart where part_id=part_id
 				HashMap<String,Object> row3 = db3.results.get(0);  
 			
@@ -82,10 +82,7 @@
 			<td><%= part_availability %>
 			<td>	<form action="CollectPart.jsp" method="post">
 					<input type="submit" value="Collect More!">
-					<input type="hidden" name="name" value="<%=tran_p_name%>">
-					<input type="hidden" name="id" value="<%=tran_p_id%>">
-					<input type="hidden" name="remain" value="<%=tran_remaining%>">
-					<input type="hidden" name="available" value="<%=part_availability%>">
+					<input type="hidden" name="p_id" value="<%=tran_p_id%>">
 					<input type="hidden" name ="t_id" value="<%=t_id%>">
 					</form>
 			</tr>
