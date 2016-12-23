@@ -17,10 +17,10 @@ String p_id=request.getParameter("p_id");//Part id
 
 				Dummy db = new Dummy("String");//SELECT * from Trans_part where trans_id=t_id && part_id=p_id
 				HashMap<String,Object> row = db.results.get(0);  
-				Object p_name = row.get("coloumn0");//Part_name
+				Object tran_p_name = row.get("coloumn0");//Part_name
 				Object remaining = row.get("coloumn3");//P_remaining
 
-				String tran_p_name = (String) p_name;
+				String p_name = (String) tran_p_name;
 				String s_remain = (String) remaining;
 				
 				Dummy db3 = new Dummy("String");//SELECT  from sparePart where part_id=part_id
@@ -37,7 +37,7 @@ String p_id=request.getParameter("p_id");//Part id
 		<td>Available
 	</tr>
 	<tr>
-		<td><%=tran_p_name %>
+		<td><%=p_name %>
 		<td><%=p_id %>
 		<td><%=s_remain %>
 		<td><%=s_available %>
