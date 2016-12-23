@@ -19,11 +19,11 @@ public class CollectPart extends HttpServlet {
        
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String p_id = request.getParameter("s_id");// The part's id.
+		String p_id = request.getParameter("p_id").trim();// The part's id. Trim is just for test
 		String s_lots = request.getParameter("lots");// The amount of parts that Warehouse_keeper have collected.
 		String s_remain= request.getParameter("s_remain");// the amount of part that Warehouse have to collect.
-		String t_id=request.getParameter("t_id");//The tran's id
-		RequestDispatcher rd =getServletContext().getRequestDispatcher("/Warehouse_keeper/CollectPart.jsp?t_id="+t_id);//That's for the false case!
+		String t_id=request.getParameter("t_id").trim();//The tran's id trim is just for test
+		RequestDispatcher rd =getServletContext().getRequestDispatcher("/Warehouse_keeper/CollectPart.jsp?t_id="+t_id+"&p_id="+p_id);//That's for the false case!
 		PrintWriter out =response.getWriter();
 		try
 	    {
@@ -45,7 +45,7 @@ public class CollectPart extends HttpServlet {
 	    	  //einai to availiability kai meta na kaneis thn afairesh.
 	      }
 
-	      response.sendRedirect("Supervisor/TransactionDetails.jsp?tran="+p_id );
+	      response.sendRedirect("/Warehouse_keeper/CollectPart.jsp?t_id="+t_id+"&p_id="+p_id);
 	     }
 	    
 	    catch (NumberFormatException nfe)
